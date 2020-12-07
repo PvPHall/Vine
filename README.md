@@ -17,7 +17,7 @@
     </a>
 </p>-->
 
-**Vine** is a Java PreProcessor to use on codebase with multiple Minecraft versions. Created and used for [PvPHall Client](https://pvphall.com).
+**Vine** is a Java PreProcessor to use one codebase with multiple Minecraft versions. Created and used for [PvPHall Client](https://pvphall.com).
 
 ## Table of content
 - [Usage](#usage)
