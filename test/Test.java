@@ -30,7 +30,7 @@ public class Test
 
     public static void main(String [] arg) {
 
-        System.out.println("1.8.9 work");
+        System.out.println("default");
         System.out.println("Always run");
     }
 

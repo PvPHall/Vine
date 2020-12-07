@@ -22,29 +22,24 @@
  * SOFTWARE.
  */
 
-package com.pvphall.vine.test;
+package com.pvphall.vine.preprocessor.expressions;
 
-public class Test
-        //# if MC=189
-        implements Runnable
-        //# endif
-        {
+import com.pvphall.vine.api.expressions.AbstractExpression;
+import com.pvphall.vine.api.expressions.EndExpression;
 
-    public static void main(String [] arg) {
+import java.util.Properties;
 
-        //# if MC=1710
-        //$ System.out.println("1.7.10 work");
-        //# else
-        //$ System.out.println("default");
-        //# endif
-        System.out.println("Always run");
-    }
+public class ElseExpression extends AbstractExpression implements EndExpression {
 
-    //# if MC=189
     @Override
-    public void run() {
+    public String getKeyword() {
 
-        System.out.println("1.8.9 runnable");
+        return "else";
     }
-    //# endif
+
+    @Override
+    public boolean validate(String body, AbstractExpression previousExpression, Properties properties) {
+
+        return previousExpression instanceof IfExpression && !previousExpression.hasPassed();
+    }
 }

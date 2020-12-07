@@ -31,6 +31,7 @@ public enum Expressions {
     IF(new IfExpression()),
     ENDIF(new EndIfExpression()),
     ELSEIF(new ElseIfExpression()),
+    ELSE(new ElseExpression()),
     ;
 
     private static final Expressions[] KEYWORDS = values();
