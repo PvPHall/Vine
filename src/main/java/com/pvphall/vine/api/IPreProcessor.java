@@ -27,7 +27,6 @@ package com.pvphall.vine.api;
 import com.pvphall.vine.api.files.IFileProcessor;
 
 import java.io.File;
-import java.util.Properties;
 
 public interface IPreProcessor {
 
@@ -44,13 +43,6 @@ public interface IPreProcessor {
      * @return The preprocessed destination file
      */
     File getDestination();
-
-    /**
-     * Get the properties specified in the args
-     *
-     * @return The properties for this processor
-     */
-    Properties getProperties();
 
     /**
      * Start the preprocessing with a custom {@link IFileProcessor}

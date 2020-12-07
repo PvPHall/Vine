@@ -26,8 +26,6 @@ package com.pvphall.vine.api.expressions;
 
 import com.pvphall.vine.api.IPreProcessor;
 
-import java.util.Properties;
-
 public abstract class AbstractExpression {
 
     /**
@@ -72,8 +70,8 @@ public abstract class AbstractExpression {
      *
      * @param body The body of this expression
      * @param previousExpression The previous parsed expression
-     * @param properties The current properties
+     * @param mcVersion The current properties
      * @return If this expression is validated or not
      */
-    public abstract boolean validate(String body, AbstractExpression previousExpression, Properties properties);
+    public abstract boolean validate(String body, AbstractExpression previousExpression, String mcVersion);
 }

@@ -30,7 +30,6 @@ import com.pvphall.vine.api.files.IFileProcessor;
 import com.pvphall.vine.utils.FileUtils;
 
 import java.io.File;
-import java.util.Properties;
 
 public class PreProcessor extends AbstractPreProcessor {
 
@@ -39,19 +38,9 @@ public class PreProcessor extends AbstractPreProcessor {
         super(source, destination);
     }
 
-    private PreProcessor(File source, File destination, Properties properties) {
-
-        super(source, destination, properties);
-    }
-
     public static IPreProcessor makePreProcessor(File source, File destination) {
 
         return new PreProcessor(source, destination);
-    }
-
-    public static IPreProcessor makePreProcessor(File source, File destination, Properties properties) {
-
-        return new PreProcessor(source, destination, properties);
     }
 
     @Override

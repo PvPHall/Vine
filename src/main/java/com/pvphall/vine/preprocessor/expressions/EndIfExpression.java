@@ -27,8 +27,6 @@ package com.pvphall.vine.preprocessor.expressions;
 import com.pvphall.vine.api.expressions.AbstractExpression;
 import com.pvphall.vine.api.expressions.EndExpression;
 
-import java.util.Properties;
-
 public class EndIfExpression extends AbstractExpression implements EndExpression {
 
     @Override
@@ -38,7 +36,7 @@ public class EndIfExpression extends AbstractExpression implements EndExpression
     }
 
     @Override
-    public boolean validate(String body, AbstractExpression previousExpression, Properties properties) {
+    public boolean validate(String body, AbstractExpression previousExpression, String mcVersion) {
 
         return previousExpression instanceof IfExpression && previousExpression.hasPassed();
     }

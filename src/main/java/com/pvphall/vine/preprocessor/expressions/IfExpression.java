@@ -26,8 +26,6 @@ package com.pvphall.vine.preprocessor.expressions;
 
 import com.pvphall.vine.api.expressions.AbstractExpression;
 
-import java.util.Properties;
-
 public class IfExpression extends AbstractExpression {
 
     @Override
@@ -37,15 +35,16 @@ public class IfExpression extends AbstractExpression {
     }
 
     @Override
-    public boolean validate(String body, AbstractExpression previousKeyword, Properties properties) {
+    public boolean validate(String body, AbstractExpression previousKeyword, String mcVersion) {
 
         if(body.contains("=")) {
 
             String[] content = body.split("=");
+            // TODO
             String property = content[0];
             String variable = content[1];
 
-            return properties.getProperty(property).equals(variable);
+            return mcVersion.equals(variable);
 
         } else
             return false;

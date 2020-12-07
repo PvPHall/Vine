@@ -43,14 +43,14 @@ public class FileProcessor implements IFileProcessor {
     private static final AbstractMatcher EXPRESSIONS_MATCHER = new ExpressionsMatcher();
     private static final AbstractMatcher LINES_MATCHER = new LinesMatcher();
 
-    private Properties properties;
+    private String mcVersion;
     private AbstractExpression previousExpression;
 
     private boolean removeNextLine;
 
-    public FileProcessor(Properties properties) {
+    public FileProcessor(String mcVersion) {
 
-        this.properties = properties;
+        this.mcVersion = mcVersion;
         this.removeNextLine = false;
     }
 
@@ -70,7 +70,7 @@ public class FileProcessor implements IFileProcessor {
             AbstractExpression expression = Expressions.resolve(expressions[0]);
             String body = expressions.length == 2 ? expressions[1] : null;
 
-            expression.setPassed(expression.validate(body, this.previousExpression, this.properties));
+            expression.setPassed(expression.validate(body, this.previousExpression, this.mcVersion));
 
             if(!expression.hasPassed() && expression instanceof IfExpression)
                 this.removeNextLine = true;

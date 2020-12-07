@@ -25,7 +25,6 @@
 package com.pvphall.vine.api;
 
 import java.io.File;
-import java.util.Properties;
 
 public abstract class AbstractPreProcessor implements IPreProcessor {
 
@@ -39,21 +38,10 @@ public abstract class AbstractPreProcessor implements IPreProcessor {
      */
     private File destination;
 
-    /**
-     * The properties for this preprocessor.
-     */
-    private Properties properties;
-
     public AbstractPreProcessor(File source, File destination) {
-
-        this(source, destination, new Properties());
-    }
-
-    public AbstractPreProcessor(File source, File destination, Properties properties) {
 
         this.source = source;
         this.destination = destination;
-        this.properties = properties;
     }
 
     @Override
@@ -66,11 +54,5 @@ public abstract class AbstractPreProcessor implements IPreProcessor {
     public File getDestination() {
 
         return this.destination;
-    }
-
-    @Override
-    public Properties getProperties() {
-
-        return this.properties;
     }
 }

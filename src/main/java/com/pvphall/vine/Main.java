@@ -27,43 +27,33 @@ package com.pvphall.vine;
 import com.pvphall.vine.api.IPreProcessor;
 import com.pvphall.vine.preprocessor.files.FileProcessor;
 import com.pvphall.vine.preprocessor.PreProcessor;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
+import joptsimple.OptionSpec;
 
 import java.io.*;
 
-/**
- * Will be heavily modified.
- *
- * @deprecated
- */
 public class Main {
-
-    public static String version = "2.7";
 
     public static void main(String[] args) {
 
-        if(args == null || args.length == 0) {
+        OptionParser optionParser = new OptionParser();
 
-            System.out.println("You have to specify arguments. Try to use -h.");
-            System.exit(1);
-        }
+        OptionSpec<File> inputParam = optionParser.accepts("input").withRequiredArg().ofType(File.class);
+        OptionSpec<File> outputParam = optionParser.accepts("output").withRequiredArg().ofType(File.class);
+        OptionSpec<String> mcVersionParam = optionParser.accepts("mcVersion").withRequiredArg().ofType(String.class);
 
-        CLIParser cli = new CLIParser();
+        OptionSet optionSet = optionParser.parse(args);
 
-        try {
-
-            cli.parseArguments(args);
-
-        } catch (Exception ex) {
-
-            System.out.println(ex.getMessage());
-            System.exit(1);
-        }
+        File inputFile = optionSet.has(inputParam) ? optionSet.valueOf(inputParam) : null;
+        File outputFile = optionSet.has(outputParam) ? optionSet.valueOf(outputParam) : null;
+        String mcVersion = optionSet.has(mcVersionParam) ? optionSet.valueOf(mcVersionParam) : null;
 
         try {
 
-            IPreProcessor preProcessor = PreProcessor.makePreProcessor(new File(cli.getSourceDir()), new File(cli.getDestDir()), cli.getProperties());
+            IPreProcessor preProcessor = PreProcessor.makePreProcessor(inputFile, outputFile);
 
-            preProcessor.preprocess(new FileProcessor(cli.getProperties()));
+            preProcessor.preprocess(new FileProcessor(mcVersion));
 
         } catch(Exception ex) {
 
