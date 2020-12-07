@@ -34,6 +34,8 @@ public class Test
 
         //# if MC=1710
         //$ System.out.println("1.7.10 work");
+        //# elseif MC=1122
+        //$ System.out.println("1.12.2 work");
         //# endif
         System.out.println("Always run");
     }

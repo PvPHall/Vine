@@ -24,6 +24,7 @@
 
 package com.pvphall.vine.preprocessor.files;
 
+import com.pvphall.vine.api.expressions.EndExpression;
 import com.pvphall.vine.api.files.IFileProcessor;
 import com.pvphall.vine.api.expressions.AbstractExpression;
 import com.pvphall.vine.preprocessor.expressions.Expressions;
@@ -74,7 +75,7 @@ public class FileProcessor implements IFileProcessor {
             if(!expression.hasPassed() && expression instanceof IfExpression)
                 this.removeNextLine = true;
 
-            if(expression instanceof EndIfExpression)
+            if(expression instanceof EndExpression)
                 this.removeNextLine = false;
 
             this.previousExpression = expression;

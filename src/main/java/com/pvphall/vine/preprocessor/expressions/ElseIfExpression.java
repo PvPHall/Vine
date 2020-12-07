@@ -29,17 +29,17 @@ import com.pvphall.vine.api.expressions.EndExpression;
 
 import java.util.Properties;
 
-public class EndIfExpression extends AbstractExpression implements EndExpression {
+public class ElseIfExpression extends IfExpression implements EndExpression {
 
     @Override
     public String getKeyword() {
 
-        return "endif";
+        return "elseif";
     }
 
     @Override
     public boolean validate(String body, AbstractExpression previousExpression, Properties properties) {
 
-        return previousExpression instanceof IfExpression && previousExpression.hasPassed();
+        return previousExpression instanceof IfExpression && !previousExpression.hasPassed() && super.validate(body, previousExpression, properties);
     }
 }

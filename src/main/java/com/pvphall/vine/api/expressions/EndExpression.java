@@ -22,24 +22,7 @@
  * SOFTWARE.
  */
 
-package com.pvphall.vine.preprocessor.expressions;
+package com.pvphall.vine.api.expressions;
 
-import com.pvphall.vine.api.expressions.AbstractExpression;
-import com.pvphall.vine.api.expressions.EndExpression;
-
-import java.util.Properties;
-
-public class EndIfExpression extends AbstractExpression implements EndExpression {
-
-    @Override
-    public String getKeyword() {
-
-        return "endif";
-    }
-
-    @Override
-    public boolean validate(String body, AbstractExpression previousExpression, Properties properties) {
-
-        return previousExpression instanceof IfExpression && previousExpression.hasPassed();
-    }
+public interface EndExpression {
 }
