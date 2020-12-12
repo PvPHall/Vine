@@ -46,7 +46,14 @@ public class PreProcessor extends AbstractPreProcessor {
     @Override
     public boolean preprocess(IFileProcessor fileProcessor) {
 
+        System.out.println("Starting Vine PreProcessor...");
+        System.out.println("Using source file: " + this.getSource().getPath());
+        System.out.println("Using destination file: " + this.getDestination().getPath());
+        System.out.println("Using MC Version: " + fileProcessor.getMcVersion());
+
         FileUtils.copyDirectory(this.getSource(), this.getDestination(), fileProcessor);
+
+        System.out.println("Done.");
 
         return false;
     }

@@ -48,4 +48,11 @@ public interface IFileProcessor {
 
         return line;
     }
+
+    /**
+     * Get the MC Version used to this file processor.
+     *
+     * @return The MC version to use
+     */
+    String getMcVersion();
 }

@@ -28,7 +28,6 @@ import com.pvphall.vine.api.expressions.EndExpression;
 import com.pvphall.vine.api.files.IFileProcessor;
 import com.pvphall.vine.api.expressions.AbstractExpression;
 import com.pvphall.vine.preprocessor.expressions.Expressions;
-import com.pvphall.vine.preprocessor.expressions.EndIfExpression;
 import com.pvphall.vine.preprocessor.expressions.IfExpression;
 import com.pvphall.vine.api.matchers.AbstractMatcher;
 import com.pvphall.vine.preprocessor.matchers.ExpressionsMatcher;
@@ -36,7 +35,6 @@ import com.pvphall.vine.preprocessor.matchers.LinesMatcher;
 import com.pvphall.vine.utils.FileUtils;
 
 import java.io.File;
-import java.util.Properties;
 
 public class FileProcessor implements IFileProcessor {
 
@@ -98,5 +96,11 @@ public class FileProcessor implements IFileProcessor {
             return null;
 
         return line;
+    }
+
+    @Override
+    public String getMcVersion() {
+
+        return this.mcVersion;
     }
 }
