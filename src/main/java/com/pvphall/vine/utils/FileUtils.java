@@ -71,6 +71,9 @@ public class FileUtils {
             fileReader.close();
             bufferedReader.close();
 
+            if(destination.getParentFile() != null)
+                destination.getParentFile().mkdirs();
+
             FileWriter fileWriter = new FileWriter(destination);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
