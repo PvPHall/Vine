@@ -37,6 +37,19 @@ public class Main {
 
     public static void main(String[] args) {
 
+        try {
+
+            start(args);
+
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    private static void start(String[] args) throws FileNotFoundException {
+
         OptionParser optionParser = new OptionParser();
 
         OptionSpec<File> inputParam = optionParser.accepts("input").withRequiredArg().ofType(File.class);
@@ -49,16 +62,16 @@ public class Main {
         File outputFile = optionSet.has(outputParam) ? optionSet.valueOf(outputParam) : null;
         String mcVersion = optionSet.has(mcVersionParam) ? optionSet.valueOf(mcVersionParam) : null;
 
-        try {
+        if(inputFile == null || !inputFile.exists())
+            throw new FileNotFoundException("Input file does not exist.");
 
-            IPreProcessor preProcessor = PreProcessor.makePreProcessor(inputFile, outputFile);
+        if(outputFile == null)
+            throw new FileNotFoundException("Cloud not determine output file.");
 
-            preProcessor.preprocess(new FileProcessor(mcVersion));
+        if(mcVersion == null)
+            throw new FileNotFoundException("Could not determine MC Version.");
 
-        } catch(Exception ex) {
-
-            System.out.println(ex.getMessage());
-            System.exit(1);
-        }
+        IPreProcessor preProcessor = PreProcessor.makePreProcessor(inputFile, outputFile);
+        preProcessor.preprocess(new FileProcessor(mcVersion));
     }
 }
