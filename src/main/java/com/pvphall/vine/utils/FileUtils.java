@@ -32,7 +32,7 @@ import java.util.List;
 
 public class FileUtils {
 
-    public static void copyDirectory(File source, File destination, IFileProcessor fileProcessor) {
+    public static void copyDirectory(File source, File destination, IFileProcessor fileProcessor) throws IOException {
 
         if(source.isDirectory()) {
 
@@ -50,42 +50,35 @@ public class FileUtils {
             fileProcessor.processFile(source, destination);
     }
 
-    public static void copyFiles(File source, File destination, IFileProcessor fileProcessor) {
+    public static void copyFiles(File source, File destination, IFileProcessor fileProcessor) throws IOException {
 
         List<String> lines = new ArrayList<String>();
         String line = null;
 
-        try {
+        FileReader fileReader = new FileReader(source);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            FileReader fileReader = new FileReader(source);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        while ((line = bufferedReader.readLine()) != null) {
 
-            while ((line = bufferedReader.readLine()) != null) {
+            line = fileProcessor.processLine(line);
 
-                line = fileProcessor.processLine(line);
-
-                if(line != null)
-                    lines.add(line);
-            }
-
-            fileReader.close();
-            bufferedReader.close();
-
-            if(destination.getParentFile() != null)
-                destination.getParentFile().mkdirs();
-
-            FileWriter fileWriter = new FileWriter(destination);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            for(String currentLine : lines)
-                bufferedWriter.write(currentLine + System.lineSeparator());
-
-            bufferedWriter.flush();
-            bufferedWriter.close();
-
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
+            if(line != null)
+                lines.add(line);
         }
+
+        fileReader.close();
+        bufferedReader.close();
+
+        if(destination.getParentFile() != null)
+            destination.getParentFile().mkdirs();
+
+        FileWriter fileWriter = new FileWriter(destination);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+        for(String currentLine : lines)
+            bufferedWriter.write(currentLine + System.lineSeparator());
+
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 }

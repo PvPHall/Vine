@@ -48,7 +48,7 @@ public interface IPreProcessor {
      * Start the preprocessing with a custom {@link IFileProcessor}
      *
      * @param processor The processor to use
-     * @return If the preprocessor
+     * @return If the preprocessor has succeeded
      */
     boolean preprocess(IFileProcessor processor);
 }

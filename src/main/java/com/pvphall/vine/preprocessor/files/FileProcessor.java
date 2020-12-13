@@ -35,6 +35,7 @@ import com.pvphall.vine.preprocessor.matchers.LinesMatcher;
 import com.pvphall.vine.utils.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 
 public class FileProcessor implements IFileProcessor {
 
@@ -53,7 +54,7 @@ public class FileProcessor implements IFileProcessor {
     }
 
     @Override
-    public void processFile(File source, File destination) {
+    public void processFile(File source, File destination) throws IOException {
 
         FileUtils.copyFiles(source, destination, this);
     }

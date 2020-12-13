@@ -25,6 +25,7 @@
 package com.pvphall.vine.api.files;
 
 import java.io.File;
+import java.io.IOException;
 
 public interface IFileProcessor {
 
@@ -32,10 +33,11 @@ public interface IFileProcessor {
      * Process a file through this {@code FileProcessor} and output
      * it to the destination file.
      *
+     * @throws IOException If files does not exists or if an I/O error occur
      * @param source The source file to process
      * @param destination The destination file
      */
-    void processFile(File source, File destination);
+    void processFile(File source, File destination) throws IOException;
 
     /**
      * Process a single line through this {@code FileProcessor}. By

@@ -30,6 +30,7 @@ import com.pvphall.vine.api.files.IFileProcessor;
 import com.pvphall.vine.utils.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 
 public class PreProcessor extends AbstractPreProcessor {
 
@@ -51,10 +52,19 @@ public class PreProcessor extends AbstractPreProcessor {
         System.out.println("Using destination file: " + this.getDestination().getPath());
         System.out.println("Using MC Version: " + fileProcessor.getMcVersion());
 
-        FileUtils.copyDirectory(this.getSource(), this.getDestination(), fileProcessor);
+        try {
+
+            FileUtils.copyDirectory(this.getSource(), this.getDestination(), fileProcessor);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            return false;
+        }
 
         System.out.println("Done.");
 
-        return false;
+        return true;
     }
 }
